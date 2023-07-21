@@ -1,12 +1,14 @@
-import { Link } from 'react-router-dom';
-import Authen from 'src/Layout/Authen';
 import Label from 'src/components/label';
-import { useForm } from 'react-hook-form';
 import Input from 'src/components/Input';
+import Authen from 'src/Layout/Authen';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import FormGroup from 'src/components/common/FormGroup';
+import Button from 'src/components/Button';
 
 const Register = () => {
-  const { handleSubmit, control } = useForm();
-
+  const { handleSubmit, control, formState } = useForm();
+  const { isSubmitting } = formState;
   const handleRegister = (value) => {
     console.log(value);
   };
@@ -26,15 +28,51 @@ const Register = () => {
         Or sign up with email
       </p>
       <form onSubmit={handleSubmit(handleRegister)}>
-        <div className='flex flex-col gap-y-3'>
-          <Label htmlFor='email'>Email</Label>
+        {/* username */}
+        <FormGroup>
+          <Label htmlFor='username'>Username*</Label>
+          <Input
+            control={control}
+            name='username'
+            type='text'
+            placeholder='Enter your username...'
+          />
+        </FormGroup>
+
+        {/* email */}
+        <FormGroup>
+          <Label htmlFor='email'>Email*</Label>
           <Input
             control={control}
             name='email'
             type='text'
-            placeholder='Enter your email...'
-          ></Input>
+            placeholder='example@gmail.com'
+          />
+        </FormGroup>
+
+        <FormGroup>
+          <Label htmlFor='password'>Password*</Label>
+          <Input
+            control={control}
+            name='password'
+            type='text'
+            placeholder='Your password....'
+          />
+        </FormGroup>
+        <div className='flex items-start mb-5 gap-x-5'>
+          <span className='inline-block w-5 h-5 border rounded border-text4'></span>
+          <p className='text-sm font-normal text-text2'>
+            I argree for the{' '}
+            <span className='text-purple-500 underline'>Tearsm of Use</span> and
+            have read the policy
+          </p>
         </div>
+        <Button
+          isLoading={isSubmitting}
+          className='w-full text-white bg-primary'
+        >
+          Create my accounts
+        </Button>
       </form>
     </Authen>
   );

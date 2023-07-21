@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useController } from 'react-hook-form';
 
-const Input = ({ name, type, placeholder, control, error = '' }) => {
+const Input = ({ name, type = 'text', placeholder, control, error = '' }) => {
   const { field } = useController({
     control,
     name,
