@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
   return (
     <div className='p-10 bg-lite'>
       <TopBar></TopBar>
-      <section>
+      <section className='flex items-start gap-x-10'>
         <Sidebar></Sidebar>
         <article>{children}</article>
       </section>
