@@ -1,14 +1,11 @@
 import PropTypes from 'prop-types';
+import { withErrorBoundary } from 'react-error-boundary';
 import { Link } from 'react-router-dom';
+import Error from 'src/components/common/Error';
 
 const Authen = ({ children, heading }) => {
   return (
-    <section className='relative w-full min-h-screen p-10 bg-lite'>
-      <img
-        src='/bg.png'
-        alt=''
-        className='absolute bottom-0 left-0 right-0 pointer-events-none z-[-1] isolate'
-      />
+    <section className='w-full min-h-screen p-10 bg-lite'>
       <Link to='/' className='inline-block mb-5 lg:mb-16'>
         <img srcSet='/logo.png 2x' alt='crow-app' />
       </Link>
@@ -27,4 +24,6 @@ Authen.propTypes = {
   heading: PropTypes.string,
 };
 
-export default Authen;
+export default withErrorBoundary(Authen, {
+  FallbackComponent: Error,
+});
