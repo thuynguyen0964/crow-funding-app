@@ -6,11 +6,13 @@ import Button from 'src/components/Button';
 import Authen from 'src/Layout/Authen';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { message } from 'src/constants';
 import FormError from 'src/components/Errors';
+import { EyeSlashIcon, EyeIcon } from '@heroicons/react/24/outline';
+import ActionBtn from 'src/components/Button/ActionBtn';
 
 const schema = yup.object({
   username: yup.string().required(message.require),
@@ -20,9 +22,12 @@ const schema = yup.object({
 
 const Register = () => {
   const [accept, setAccept] = useState(false);
-  const handleAccepts = () => {
-    setAccept(!accept);
+  const [open, setOpen] = useState(false);
+
+  const handleCheck = (state, callback) => {
+    callback(!state);
   };
+
   const { handleSubmit, control, formState } = useForm({
     resolver: yupResolver(schema),
   });
@@ -32,6 +37,10 @@ const Register = () => {
     console.log(value);
   };
 
+  useEffect(() => {
+    document.title = 'Register your accounts';
+  }, []);
+
   return (
     <Authen heading='Register an accounts'>
       <p className='mb-6 text-xs font-normal text-center lg:text-sm text-text3 lg:mb-8'>
@@ -40,10 +49,7 @@ const Register = () => {
           Login now
         </Link>
       </p>
-      <button className='flex items-center justify-center w-full py-3 mb-5 text-base font-semibold border text-text2 gap-x-2 border-strock'>
-        <img srcSet='/icon-google.png 2x' alt='' />
-        <span>Register with Google</span>
-      </button>
+      <ActionBtn></ActionBtn>
       <p className='mb-4 text-xs font-normal text-center lg:text-sm lg:mb-8 text-text2 dark:text-white'>
         Or sign up with email
       </p>
@@ -72,19 +78,37 @@ const Register = () => {
           <FormError>{errors?.email?.message}</FormError>
         </FormGroup>
 
+        {/* password */}
         <FormGroup>
           <Label htmlFor='password'>Password*</Label>
           <Input
             control={control}
             name='password'
-            type='text'
+            type={open ? 'text' : 'password'}
             placeholder='Your password....'
-          />
+          >
+            {open ? (
+              <EyeSlashIcon
+                onClick={() => handleCheck(open, setOpen)}
+                className='w-6 h-6 text-gray-600'
+              />
+            ) : (
+              <EyeIcon
+                onClick={() => handleCheck(open, setOpen)}
+                className='w-6 h-6 text-gray-600'
+              />
+            )}
+          </Input>
           <FormError>{errors?.password?.message}</FormError>
         </FormGroup>
+
         {/* checked */}
-        <Checkbox checked={accept} onClick={handleAccepts} name='terms'>
-          <p className='text-sm font-normal text-text2'>
+        <Checkbox
+          checked={accept}
+          onClick={() => handleCheck(accept, setAccept)}
+          name='terms'
+        >
+          <p className='text-sm font-normal select-none text-text2'>
             I argree for the{' '}
             <span className='text-purple-500 underline'>Tearsm of Use</span> and
             have read the policy

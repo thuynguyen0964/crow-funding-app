@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 
 const FormGroup = ({ children }) => {
-  return <div className='flex flex-col mb-5 gap-y-3'>{children}</div>;
+  return (
+    <div className='flex flex-col mb-4 lg:mb-5 lg:gap-y-3 gap-y-2'>
+      {children}
+    </div>
+  );
 };
 
 FormGroup.propTypes = { children: PropTypes.node };
