@@ -4,14 +4,14 @@ import { withErrorBoundary } from 'react-error-boundary';
 import { useController } from 'react-hook-form';
 import Error from '../common/Error';
 
-const Input = ({
+function Input({
   name,
   type = 'text',
   placeholder,
   control,
   error = '',
   children,
-}) => {
+}) {
   const { field } = useController({
     control,
     name,
@@ -37,7 +37,7 @@ const Input = ({
       </span>
     </div>
   );
-};
+}
 
 Input.propTypes = {
   name: PropTypes.string,

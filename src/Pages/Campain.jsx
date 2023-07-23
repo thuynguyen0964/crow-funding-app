@@ -31,7 +31,10 @@ const Campain = () => {
           </div>
         </div>
 
-        <Button className='px-4 text-white bg-secondary bg-opacity-40'>
+        <Button
+          to='/campain/add'
+          className='px-4 text-blue-600 bg-secondary bg-opacity-40'
+        >
           Create campain
         </Button>
       </section>
@@ -42,6 +45,10 @@ const Campain = () => {
         <CampainFeature />
         <CampainFeature />
       </Grid>
+      <Button className='px-6 mx-auto mt-3 text-blue-600 bg-opacity-30 bg-secondary'>
+        <span>See more</span>
+        <PlusIcon className='w-5 h-5' />
+      </Button>
     </Layout>
   );
 };
