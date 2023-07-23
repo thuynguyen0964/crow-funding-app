@@ -23,6 +23,7 @@
     "react-router-dom": "^6.14.2",
     "react-tooltip": "^5.18.1",
     "redux-saga": "^1.2.3",
+    "uuid": "^9.0.0",
     "yup": "^1.2.0"
   },
   "devDependencies": {

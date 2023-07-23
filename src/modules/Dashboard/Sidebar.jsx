@@ -15,47 +15,41 @@ const listMenu = [
     icon: <Squares2X2Icon className='w-8 h-8 text-icon' />,
     title: 'Dashboard',
     url: '/',
-    id: 'menu-tooltip',
   },
   {
     icon: <MegaphoneIcon className='w-8 h-8 text-icon' />,
     title: 'Campain',
     url: '/campain',
-    id: 'menu-tooltip',
   },
   {
     icon: <BanknotesIcon className='w-8 h-8 text-icon' />,
     title: 'Payment',
     url: '/payment',
-    id: 'menu-tooltip',
   },
   {
     icon: <UserCircleIcon className='w-8 h-8 text-icon' />,
     title: 'Profile',
     url: '/me',
-    id: 'menu-tooltip',
   },
   {
     icon: <ArrowRightOnRectangleIcon className='w-8 h-8 text-icon' />,
     title: 'Logout',
     url: '#!',
     onclick: () => null,
-    id: 'menu-tooltip',
   },
   {
     icon: <SunIcon className='w-8 h-8 text-icon' />,
     title: 'Theme',
     url: '#!',
-    id: 'menu-tooltip',
   },
 ];
 
 const Sidebar = () => {
   return (
-    <div className='w-full md:w-[76px] rounded-3xl shadow-md bg-white px-[14px] py-10 flex flex-col'>
+    <div className='w-full md:w-[76px] flex-shrink-0 rounded-3xl shadow-md bg-white px-[14px] py-10 flex flex-col'>
       {listMenu.map((menu) => (
         <NavLink
-          data-tooltip-id={menu.id}
+          data-tooltip-id='menu-tooltip'
           data-tooltip-content={menu.title}
           to={menu?.url}
           key={menu.title}
