@@ -12,3 +12,21 @@ body {
 .active {
   background-color: #ffffda;
 }
+.quill {
+  @apply border border-strock rounded-xl;
+  padding: 15px 25px;
+}
+.ql-editor.ql-blank::before {
+  @apply text-sm not-italic text-text4;
+}
+.quill .ql-editor {
+  @apply pt-10;
+}
+.quill .ql-container.ql-snow,
+.quill .ql-editor {
+  @apply border-none text-sm;
+}
+.ql-toolbar.ql-snow {
+  border: none;
+  @apply bg-text4 bg-opacity-10 rounded-xl py-3 px-5 inline-block;
+}
