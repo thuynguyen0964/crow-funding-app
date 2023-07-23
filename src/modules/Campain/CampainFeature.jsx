@@ -11,7 +11,7 @@ const CampainFeature = () => {
       <CamThumbail
         className='h-[266px] flex-1 max-w-[435px]'
         img={imageFeature}
-      ></CamThumbail>
+      />
       <div className='flex-1'>
         <CategoryCampain title='Architeture' className='!text-sm' />
         <CamHeader

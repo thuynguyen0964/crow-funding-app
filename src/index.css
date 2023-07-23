@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 body {
+  margin-left: auto;
+  margin-right: auto;
   font-family: 'Epilogue', sans-serif;
+  text-rendering: optimizeLegibility;
+  max-width: 1440px;
 }
 .active {
   background-color: #ffffda;

@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import Layout from 'src/Layout/Dashboard';
 import Heading from 'src/components/common/Heading';
+import Overlay from 'src/components/common/Overlay';
 import CampainFeature from 'src/modules/Campain/CampainFeature';
 import CampainItem from 'src/modules/Campain/CampainItem';
 import Grid from 'src/modules/Campain/Grid';
@@ -13,6 +14,7 @@ const Dashboard = () => {
   }, []);
   return (
     <Layout>
+      <Overlay />
       <Heading number={4}>Your campain</Heading>
       <CampainFeature />
       <Heading>Popular Campain near you</Heading>
