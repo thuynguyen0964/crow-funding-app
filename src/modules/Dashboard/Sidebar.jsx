@@ -34,13 +34,13 @@ const listMenu = [
   {
     icon: <ArrowRightOnRectangleIcon className='w-8 h-8 text-icon' />,
     title: 'Logout',
-    url: '#!',
+    url: '/!',
     onclick: () => null,
   },
   {
     icon: <SunIcon className='w-8 h-8 text-icon' />,
     title: 'Theme',
-    url: '#!',
+    url: '/!',
   },
 ];
 

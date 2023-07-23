@@ -18,7 +18,7 @@ const Dashboard = () => {
       <Heading number={4}>Your campain</Heading>
       <CampainFeature />
       <Heading>Popular Campain near you</Heading>
-      <Grid>
+      <Grid variant='default'>
         {Array(4)
           .fill(0)
           .map((_) => (
