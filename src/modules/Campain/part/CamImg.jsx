@@ -1,14 +1,17 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const CamThumbail = ({ img, className }) => {
+const CamThumbail = ({ img, className, to }) => {
   return (
     <div className={classNames('h-[158px]', className)}>
-      <img
-        className={classNames('object-cover w-full h-full rounded-2xl')}
-        src={img}
-        alt='travel'
-      />
+      <Link to={to}>
+        <img
+          className={classNames('object-cover w-full h-full rounded-2xl')}
+          src={img}
+          alt='travel'
+        />
+      </Link>
     </div>
   );
 };
@@ -16,6 +19,7 @@ const CamThumbail = ({ img, className }) => {
 CamThumbail.propTypes = {
   img: PropTypes.string,
   className: PropTypes.string,
+  to: PropTypes.string,
 };
 
 export default CamThumbail;

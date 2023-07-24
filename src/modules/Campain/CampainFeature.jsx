@@ -4,11 +4,19 @@ import CategoryCampain from './part/Category';
 import CamHeader from './part/CamHeader';
 import CamDesc from './part/CamDesc';
 import CamMeta from './part/CamMeta';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-const CampainFeature = () => {
+const CampainFeature = ({ className = '' }) => {
   return (
-    <div className='flex items-center gap-x-8 w-full max-w-[1048px] mb-5'>
+    <div
+      className={classNames(
+        'flex items-center gap-x-8 w-full mb-5 max-w-[1048px]',
+        className
+      )}
+    >
       <CamThumbail
+        to='/campain/this-is-view-page'
         className='h-[266px] flex-1 max-w-[435px]'
         img={imageFeature}
       />
@@ -33,6 +41,11 @@ const CampainFeature = () => {
       </div>
     </div>
   );
+};
+
+CampainFeature.propTypes = {
+  className: PropTypes.string,
+  height: PropTypes.string,
 };
 
 export default CampainFeature;

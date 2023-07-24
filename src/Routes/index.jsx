@@ -8,6 +8,7 @@ import Loading from 'src/components/Effect';
 const Dashboard = React.lazy(() => import('src/Pages/Dashboard'));
 const Campain = React.lazy(() => import('/src/Pages/Campain'));
 const CreateCam = React.lazy(() => import('/src/Pages/CreateCam'));
+const CampView = React.lazy(() => import('src/Pages/CampView'));
 
 const Routing = () => {
   return (
@@ -17,6 +18,7 @@ const Routing = () => {
           <Route path='/' element={<Dashboard />} />
           <Route path='campain' element={<Campain />} />
           <Route path='campain/add' element={<CreateCam />} />
+          <Route path='campain/:slug' element={<CampView />} />
         </Route>
 
         <Route path='/register' element={<Register />} />

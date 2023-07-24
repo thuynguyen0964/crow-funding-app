@@ -54,7 +54,7 @@ const Sidebar = () => {
           to={menu?.url}
           key={menu.title}
           className={classNames(
-            'flex items-center gap-2 md:w-12 md:h-12 md:justify-center md:rounded-3xl md:mb-8 last:mt-auto'
+            'flex items-center gap-2 md:w-12 md:h-12 md:justify-center md:rounded-lg md:mb-8 last:mt-auto'
           )}
         >
           <span>{menu.icon}</span>

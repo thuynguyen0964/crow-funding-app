@@ -10,7 +10,7 @@ body {
   max-width: 1440px;
 }
 .active {
-  background-color: #ffffda;
+  background-color: #d0e3f7;
 }
 .quill {
   @apply border border-strock rounded-xl;
@@ -29,4 +29,13 @@ body {
 .ql-toolbar.ql-snow {
   border: none;
   @apply bg-text4 bg-opacity-10 rounded-xl py-3 px-5 inline-block;
+}
+
+.banner-bg {
+  background-image: linear-gradient(
+      179.14deg,
+      rgba(32, 18, 63, 0.4) -7.14%,
+      rgba(0, 0, 0, 0.4) 87.01%
+    ),
+    url('https://images.pexels.com/photos/2113554/pexels-photo-2113554.jpeg?auto=compress&cs=tinysrgb&w=600');
 }
