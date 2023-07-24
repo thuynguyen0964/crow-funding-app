@@ -13,6 +13,7 @@ const titlePage = {
   ADDCAMPAIN: 'Create your campain',
   REGISTER: 'Create an accounts',
   LOGIN: 'Login with your accounts',
+  VIEWPAGES: 'Campain with',
 };
 
 export { imageFeature, imageThumbs, imageRecent, titlePage };
