@@ -15,7 +15,7 @@ const Button = ({
       <Link
         to={to}
         className={classNames(
-          `flex disabled:opacity-50 items-center justify-center py-4 px-2 text-base font-semibold rounded-lg`,
+          `flex disabled:opacity-50 items-center justify-center py-4 px-6 text-base font-semibold rounded-lg`,
           className
         )}
       >
@@ -27,7 +27,7 @@ const Button = ({
     <button
       type={type}
       className={classNames(
-        'flex disabled:opacity-50 items-center justify-center py-4 px-2 text-base font-semibold rounded-lg',
+        'flex disabled:opacity-50 items-center justify-center py-4 px-6 text-base font-semibold rounded-lg',
         className
       )}
       disabled={isLoading}

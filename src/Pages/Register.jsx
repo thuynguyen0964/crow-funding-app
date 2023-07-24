@@ -13,6 +13,7 @@ import { message } from 'src/constants';
 import FormError from 'src/components/Errors';
 import { EyeSlashIcon, EyeIcon } from '@heroicons/react/24/outline';
 import ActionBtn from 'src/components/Button/ActionBtn';
+import { titlePage } from 'src/utils/contants';
 
 const schema = yup.object({
   username: yup.string().required(message.require),
@@ -38,7 +39,7 @@ const Register = () => {
   };
 
   useEffect(() => {
-    document.title = 'Register your accounts';
+    document.title = titlePage.REGISTER;
   }, []);
 
   return (

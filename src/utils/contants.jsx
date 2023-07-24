@@ -7,4 +7,12 @@ const imageFeature =
 const imageRecent =
   'https://images.pexels.com/photos/2113554/pexels-photo-2113554.jpeg?auto=compress&cs=tinysrgb&w=600';
 
-export { imageFeature, imageThumbs, imageRecent };
+const titlePage = {
+  HOMEPAGE: 'Home | Crow Funding App',
+  CAMPPAGE: 'Campain | Crow Funding App',
+  ADDCAMPAIN: 'Create your campain',
+  REGISTER: 'Create an accounts',
+  LOGIN: 'Login with your accounts',
+};
+
+export { imageFeature, imageThumbs, imageRecent, titlePage };

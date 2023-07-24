@@ -1,17 +1,18 @@
-import { useEffect } from 'react';
-import Layout from 'src/Layout/Dashboard';
+import { Fragment, useEffect } from 'react';
 import Heading from 'src/components/common/Heading';
 import CampainFeature from 'src/modules/Campain/CampainFeature';
 import Grid from 'src/modules/Campain/Grid';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import Button from 'src/components/Button';
+import { titlePage } from 'src/utils/contants';
 
 const Campain = () => {
   useEffect(() => {
-    document.title = 'Campain | CrowFunding App';
+    document.title = titlePage.CAMPPAGE;
   }, []);
+
   return (
-    <Layout>
+    <Fragment>
       <section className='flex items-center justify-between px-10 py-8 mb-10 bg-white rounded-3xl'>
         <div className='flex items-start gap-x-6'>
           <span className='flex items-center justify-center rounded-full bg-secondary w-14 h-14'>
@@ -49,7 +50,7 @@ const Campain = () => {
         <span>See more</span>
         <PlusIcon className='w-5 h-5' />
       </Button>
-    </Layout>
+    </Fragment>
   );
 };
 

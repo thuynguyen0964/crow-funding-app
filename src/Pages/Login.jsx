@@ -12,6 +12,7 @@ import FormGroup from 'src/components/common/FormGroup';
 import Label from 'src/components/label';
 import Input from 'src/components/Input';
 import Button from 'src/components/Button';
+import { titlePage } from 'src/utils/contants';
 
 const schema = yup.object({
   email: yup.string().required(message.require).email(message.email),
@@ -21,7 +22,7 @@ const schema = yup.object({
 const Login = () => {
   const [open, setOpen] = useState(false);
   useEffect(() => {
-    document.title = 'Login with your accounts';
+    document.title = titlePage.LOGIN;
   }, []);
 
   const { handleSubmit, control, formState } = useForm({

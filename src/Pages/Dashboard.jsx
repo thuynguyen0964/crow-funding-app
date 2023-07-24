@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 import Layout from 'src/Layout/Dashboard';
 import Heading from 'src/components/common/Heading';
 import Overlay from 'src/components/common/Overlay';
@@ -13,7 +13,7 @@ const Dashboard = () => {
     document.title = 'Home | Crow Funding App';
   }, []);
   return (
-    <Layout>
+    <Fragment>
       <Overlay />
       <Heading number={4}>Your campain</Heading>
       <CampainFeature />
@@ -35,7 +35,7 @@ const Dashboard = () => {
             <CampainItem key={uuidV4()}></CampainItem>
           ))}
       </Grid>
-    </Layout>
+    </Fragment>
   );
 };
 

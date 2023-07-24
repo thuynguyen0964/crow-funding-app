@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Layout from 'src/Layout/Dashboard';
 import Login from 'src/Pages/Login';
 import Register from 'src/Pages/Register';
 import Loading from 'src/components/Effect';
@@ -12,11 +13,14 @@ const Routing = () => {
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
-        <Route path='/' element={<Dashboard />} />
+        <Route element={<Layout />}>
+          <Route path='/' element={<Dashboard />} />
+          <Route path='campain' element={<Campain />} />
+          <Route path='campain/add' element={<CreateCam />} />
+        </Route>
+
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/campain' element={<Campain />} />
-        <Route path='/campain/add' element={<CreateCam />} />
       </Routes>
     </Suspense>
   );

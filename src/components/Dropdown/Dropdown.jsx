@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Dropdown = ({ children }) => {
   return (
     <DropdownProvider>
-      <div className='relative inline-block w-[500px]'>{children}</div>
+      <div className='relative inline-block'>{children}</div>
     </DropdownProvider>
   );
 };
