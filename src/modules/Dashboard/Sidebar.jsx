@@ -5,6 +5,7 @@ import {
   UserCircleIcon,
   ArrowRightOnRectangleIcon,
   SunIcon,
+  TruckIcon,
 } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
@@ -27,10 +28,16 @@ const listMenu = [
     url: '/payment',
   },
   {
+    icon: <TruckIcon className='w-8 h-8 text-icon' />,
+    title: 'Shipping',
+    url: '/ship',
+  },
+  {
     icon: <UserCircleIcon className='w-8 h-8 text-icon' />,
     title: 'Profile',
     url: '/me',
   },
+
   {
     icon: <ArrowRightOnRectangleIcon className='w-8 h-8 text-icon' />,
     title: 'Logout',
@@ -64,6 +71,7 @@ const Sidebar = () => {
       <Tooltip
         place='right'
         id='menu-tooltip'
+        className='z-10'
         render={({ content }) => <span>{content}</span>}
       />
     </div>

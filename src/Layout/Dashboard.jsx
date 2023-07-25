@@ -15,7 +15,7 @@ const customStyles = {
 const Layout = () => {
   return (
     <div className='p-10 bg-lite'>
-      <ModalComponents isOpen />
+      <ModalComponents />
       <TopBar />
       <section className='flex items-start gap-x-10'>
         <Sidebar />
