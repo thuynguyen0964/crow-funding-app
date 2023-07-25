@@ -14,10 +14,15 @@ import axios from 'axios';
 import { useChange } from 'src/hooks/useChange';
 import { toast } from 'react-toastify';
 import { useDebounce } from 'src/hooks/useDebounced';
+import DatePicker from 'react-date-picker';
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
 
 const CreateCam = () => {
   const [valueOill, setValueQill] = useState('');
   const [contries, setContries] = useState([]);
+  const [startTime, onChangeStartTime] = useState(new Date());
+  const [endTime, onChangeEndTime] = useState(new Date());
 
   const { control, handleSubmit, setValue } = useForm();
   const handleCreateCam = (values) => {
@@ -30,11 +35,10 @@ const CreateCam = () => {
 
   const handleGetCategory = (name, value) => {
     setValue(name, value);
-    console.log(name, '==>', value);
   };
 
   const [filter, setFilter] = useChange();
-  const deboucedVal = useDebounce(filter, 1000);
+  const deboucedVal = useDebounce(filter, 800);
 
   const getCountryFromApi = async () => {
     if (!deboucedVal) return null;
@@ -195,22 +199,20 @@ const CreateCam = () => {
               {/* time begin */}
               <FormGroup>
                 <Label htmlFor='startAt'>Start At *</Label>
-                <Input
-                  control={control}
-                  name='startAt'
-                  placeholder='Choose your time to begin ....'
-                  type='text'
+                <DatePicker
+                  format='dd-MM-yyyy'
+                  onChange={onChangeStartTime}
+                  value={startTime}
                 />
               </FormGroup>
 
               {/* endAt */}
               <FormGroup>
                 <Label htmlFor='endAt'>End At *</Label>
-                <Input
-                  control={control}
-                  name='endAt'
-                  placeholder='Choose your time to end ....'
-                  type='text'
+                <DatePicker
+                  format='dd-MM-yyyy'
+                  onChange={onChangeEndTime}
+                  value={endTime}
                 />
               </FormGroup>
             </FormRow>
