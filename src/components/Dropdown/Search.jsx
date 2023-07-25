@@ -4,7 +4,7 @@ import { useDropdown } from './Context';
 const Search = ({ placeholder, ...props }) => {
   const { onChange } = useDropdown();
   return (
-    <div className='p-2'>
+    <div className='p-2 sticky top-1 z-20 bg-white'>
       <input
         type='text'
         placeholder={placeholder}

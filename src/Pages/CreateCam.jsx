@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useForm } from 'react-hook-form';
 import FormRow from 'src/components/common/FormRow';
 import FormGroup from 'src/components/common/FormGroup';
@@ -9,10 +10,16 @@ import Editor from 'src/components/Editor';
 import { Fragment, useEffect, useState } from 'react';
 import Button from 'src/components/Button';
 import { titlePage } from 'src/utils/contants';
+import axios from 'axios';
+import { useChange } from 'src/hooks/useChange';
+import { toast } from 'react-toastify';
+import { useDebounce } from 'src/hooks/useDebounced';
 
 const CreateCam = () => {
-  const [value, setValue] = useState('');
-  const { control, handleSubmit } = useForm();
+  const [valueOill, setValueQill] = useState('');
+  const [contries, setContries] = useState([]);
+
+  const { control, handleSubmit, setValue } = useForm();
   const handleCreateCam = (values) => {
     console.log(values);
   };
@@ -20,6 +27,31 @@ const CreateCam = () => {
   useEffect(() => {
     document.title = titlePage.ADDCAMPAIN;
   }, []);
+
+  const handleGetCategory = (name, value) => {
+    setValue(name, value);
+    console.log(name, '==>', value);
+  };
+
+  const [filter, setFilter] = useChange();
+  const deboucedVal = useDebounce(filter, 1000);
+
+  const getCountryFromApi = async () => {
+    if (!deboucedVal) return null;
+    try {
+      const response = await axios.get(
+        `https://restcountries.com/v3.1/name/${deboucedVal}`
+      );
+      const data = response?.data;
+      setContries(data);
+    } catch (error) {
+      toast.info(`Call api ${error.message}`);
+    }
+  };
+
+  useEffect(() => {
+    getCountryFromApi();
+  }, [deboucedVal]);
 
   return (
     <Fragment>
@@ -43,13 +75,15 @@ const CreateCam = () => {
 
               {/* select */}
               <FormGroup>
-                <Label htmlFor='title'>Select Category</Label>
+                <Label htmlFor='category'>Select Category</Label>
                 <Dropdown>
                   <Dropdown.Select placeholder='Select your category' />
                   <Dropdown.List>
-                    <Dropdown.Option>Crypto</Dropdown.Option>
-                    <Dropdown.Option>LoremInpusum</Dropdown.Option>
-                    <Dropdown.Option>Computer/Laptop</Dropdown.Option>
+                    <Dropdown.Option
+                      onClick={() => handleGetCategory('category', 'crypto')}
+                    >
+                      Crypto
+                    </Dropdown.Option>
                   </Dropdown.List>
                 </Dropdown>
               </FormGroup>
@@ -57,7 +91,7 @@ const CreateCam = () => {
 
             {/* short desc */}
             <FormGroup>
-              <Label>Short Description</Label>
+              <Label htmlFor='desc'>Short Description</Label>
               <Textarea
                 control={control}
                 name='desc'
@@ -68,7 +102,7 @@ const CreateCam = () => {
             {/* content */}
             <FormGroup>
               <Label>Contents</Label>
-              <Editor value={value} setValue={setValue} />
+              <Editor value={valueOill} setValue={setValueQill} />
             </FormGroup>
 
             <FormRow>
@@ -138,9 +172,22 @@ const CreateCam = () => {
                 <Dropdown>
                   <Dropdown.Select placeholder='Select your country' />
                   <Dropdown.List>
-                    <Dropdown.Option>VietNam</Dropdown.Option>
-                    <Dropdown.Option>China</Dropdown.Option>
-                    <Dropdown.Option>Russian</Dropdown.Option>
+                    <Dropdown.Search
+                      placeholder='Search country...'
+                      onChange={setFilter}
+                    />
+                    {contries &&
+                      contries.length > 0 &&
+                      contries.map((country) => (
+                        <Dropdown.Option
+                          key={country?.name?.common}
+                          onClick={() =>
+                            handleGetCategory('country', country?.name?.common)
+                          }
+                        >
+                          {country?.name?.common}
+                        </Dropdown.Option>
+                      ))}
                   </Dropdown.List>
                 </Dropdown>
               </FormGroup>
