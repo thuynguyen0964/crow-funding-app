@@ -11,6 +11,7 @@ function Input({
   control,
   error = '',
   children,
+  className,
 }) {
   const { field } = useController({
     control,
@@ -27,7 +28,8 @@ function Input({
           error.length > 0
             ? 'border-error text-error'
             : 'border-strock text-text1 dark:border-darkStroke',
-          children && 'pr-16'
+          children && 'pr-16',
+          className
         )}
         placeholder={placeholder}
         {...field}
@@ -46,6 +48,7 @@ Input.propTypes = {
   error: PropTypes.string,
   control: PropTypes.any,
   children: PropTypes.node,
+  className: PropTypes.string,
 };
 
 export default withErrorBoundary(Input, {

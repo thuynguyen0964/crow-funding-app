@@ -24,11 +24,11 @@ body {
 }
 .quill .ql-container.ql-snow,
 .quill .ql-editor {
-  @apply border-none text-sm;
+  @apply text-sm border-none;
 }
 .ql-toolbar.ql-snow {
   border: none;
-  @apply bg-text4 bg-opacity-10 rounded-xl py-3 px-5 inline-block;
+  @apply inline-block px-5 py-3 bg-text4 bg-opacity-10 rounded-xl;
 }
 
 .banner-bg {
@@ -38,4 +38,14 @@ body {
       rgba(0, 0, 0, 0.4) 87.01%
     ),
     url('https://images.pexels.com/photos/2113554/pexels-photo-2113554.jpeg?auto=compress&cs=tinysrgb&w=600');
+}
+
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+.hide-scroll {
+  scrollbar-width: none;
+}
+.hide-scroll::-webkit-scrollbar {
+  display: none;
 }

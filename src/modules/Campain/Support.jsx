@@ -17,7 +17,7 @@ const Support = ({ className }) => {
           placeholder='$10'
           control={control}
           name='Pledge'
-          className='w-full px-5 py-3 mb-5 text-lg font-medium border rounded border-strock'
+          className='px-5 py-3 mb-5 text-lg rounded'
         />
         <div className='p-5 mb-5 bg-grayf3 rounded-xl'>
           <p className='mb-5 text-sm font-semibold text-text2'>
