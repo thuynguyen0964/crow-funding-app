@@ -1,7 +1,7 @@
 require('dotenv').config();
 const jsonServer = require('json-server');
 const express = require('express');
-const PORT = process.env.PORT || 3009;
+const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(express.json());
 app.use('/api', jsonServer.defaults(), jsonServer.router('db.json'));
