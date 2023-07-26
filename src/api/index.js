@@ -6,4 +6,9 @@ const api = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
-export { api };
+const apiAuth = axios.create({
+  baseURL: 'http://localhost:5001/',
+  timeout: 10000,
+});
+
+export { apiAuth, api };
