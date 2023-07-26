@@ -1,29 +1,5 @@
 {
-  "users": [
-    {
-      "id": 1,
-      "name": "evondev",
-      "password": "evondevblog",
-      "email": "evondevblog@gmail.com",
-      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImV2b25kZXYiLCJpYXQiOjE2ODUzMzM0MDYsImV4cCI6MTY4NTUwNjIwNn0.2z0uo2KQlvNrWT5tXzuln-u3NObrG5N2rvZUjNHZuWA"
-    },
-    {
-      "id": 2,
-      "name": "tuantran",
-      "password": "$2b$10$R3TnssJhrYuXi5/u4r9bou/mQ4xllqVf.13rmDqOaPUU4uWyFIUsi",
-      "email": "trananhtuan400@gmail.com",
-      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6InR1YW50cmFuIiwiaWF0IjoxNjY1OTM5NzMyLCJleHAiOjE2NjYxMTI1MzJ9.9FhKpwnSU2bnUNFtLLOFEqC78_DK5a7xJrAzkr-jj1I",
-      "permissions": ["CREATE_CAMPAIGN"]
-    },
-    {
-      "id": 3,
-      "name": "erika",
-      "password": "$2b$10$vOsq11tm2OZq6qWZV.8Qw.ijq3SSh2mt0eOyK7kkK5DLIXjvh0zqe",
-      "email": "erika@gmail.com",
-      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6ImVyaWthIiwiaWF0IjoxNjc4NTQ5NTI5LCJleHAiOjE2Nzg3MjIzMjl9.mNsFCHAh_Ayu041wo9qrdxJszEWPHwAlq3aW2YRrxPg",
-      "permissions": []
-    }
-  ],
+  "users": [],
   "categories": [],
   "campaigns": [
     {
