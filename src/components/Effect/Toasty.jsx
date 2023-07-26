@@ -4,9 +4,10 @@ import 'react-toastify/dist/ReactToastify.min.css';
 const Toasty = () => {
   return (
     <ToastContainer
+      bodyClassName={'font'}
       position='top-right'
-      autoClose={1500}
       hideProgressBar
+      autoClose={1500}
       newestOnTop={false}
       closeOnClick
       rtl={false}

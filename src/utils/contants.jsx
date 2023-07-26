@@ -16,4 +16,7 @@ const titlePage = {
   VIEWPAGES: 'Campain with',
 };
 
-export { imageFeature, imageThumbs, imageRecent, titlePage };
+const apiUpload =
+  'https://api.imgbb.com/1/upload?key=5126e8ac9ce732d2f6b5c9a1b9e5798b';
+
+export { imageFeature, imageThumbs, imageRecent, titlePage, apiUpload };

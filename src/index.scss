@@ -13,6 +13,10 @@
     @apply outline-none;
   }
 }
+
+.font {
+  font-family: 'Epilogue', sans-serif;
+}
 input:focus + .error-input {
   display: none;
 }
@@ -55,6 +59,10 @@ input:focus + .error-input {
 }
 .scroll-hidden::-webkit-scrollbar {
   display: none;
+}
+
+.active {
+  background-color: #99cefc;
 }
 // custom date picker
 body {

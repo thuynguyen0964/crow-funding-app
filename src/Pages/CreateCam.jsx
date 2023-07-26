@@ -17,16 +17,42 @@ import { useDebounce } from 'src/hooks/useDebounced';
 import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
+import { api } from 'src/api';
+import UploadImage from 'src/components/upload';
+
+const categoriesFake = ['Educations', 'Life', 'Extracurricular', 'Scouting'];
 
 const CreateCam = () => {
-  const [valueOill, setValueQill] = useState('');
+  const [story, setStory] = useState('');
   const [contries, setContries] = useState([]);
   const [startTime, onChangeStartTime] = useState(new Date());
   const [endTime, onChangeEndTime] = useState(new Date());
 
-  const { control, handleSubmit, setValue } = useForm();
-  const handleCreateCam = (values) => {
-    console.log(values);
+  const handleReset = () => {
+    onChangeEndTime('');
+    onChangeStartTime('');
+    setStory('');
+  };
+
+  const { control, handleSubmit, setValue, formState, reset, watch } =
+    useForm();
+  const { isSubmitting } = formState;
+
+  const handleCreateCam = async (values) => {
+    try {
+      const body = { ...values, story, startTime, endTime };
+      await api.post('campain', body);
+      toast.success('Create campain successfully!!');
+      reset({});
+      handleReset();
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const handleSetDropDown = (name) => {
+    const result = watch(name);
+    return result;
   };
 
   useEffect(() => {
@@ -81,13 +107,20 @@ const CreateCam = () => {
               <FormGroup>
                 <Label htmlFor='category'>Select Category</Label>
                 <Dropdown>
-                  <Dropdown.Select placeholder='Select your category' />
+                  <Dropdown.Select
+                    placeholder={
+                      handleSetDropDown('category') || 'Select category'
+                    }
+                  />
                   <Dropdown.List>
-                    <Dropdown.Option
-                      onClick={() => handleGetCategory('category', 'crypto')}
-                    >
-                      Crypto
-                    </Dropdown.Option>
+                    {categoriesFake.map((category, index) => (
+                      <Dropdown.Option
+                        key={index}
+                        onClick={() => handleGetCategory('category', category)}
+                      >
+                        {category}
+                      </Dropdown.Option>
+                    ))}
                   </Dropdown.List>
                 </Dropdown>
               </FormGroup>
@@ -106,8 +139,16 @@ const CreateCam = () => {
             {/* content */}
             <FormGroup>
               <Label>Contents</Label>
-              <Editor value={valueOill} setValue={setValueQill} />
+              <Editor value={story} setValue={setStory} />
             </FormGroup>
+
+            {/* Image upload */}
+            <FormRow>
+              <FormGroup>
+                <Label htmlFor='images'>Feature Image</Label>
+                <UploadImage setValue={setValue} name='feature_images' />
+              </FormGroup>
+            </FormRow>
 
             <FormRow>
               {/* refiled */}
@@ -119,7 +160,7 @@ const CreateCam = () => {
                   placeholder='0.00$...'
                   type='text'
                 />
-                <p className='text-left text-sm text-text3'>
+                <p className='text-sm text-left text-text3'>
                   It will help fill amount box by click, place each amount by
                   comma ex: 10,20,30...
                 </p>
@@ -134,7 +175,7 @@ const CreateCam = () => {
                   placeholder='Video...'
                   type='text'
                 />
-                <p className='text-left text-sm text-text3'>
+                <p className='text-sm text-left text-text3'>
                   Place Youtube Videos or your videos URL...
                 </p>
               </FormGroup>
@@ -174,7 +215,11 @@ const CreateCam = () => {
               <FormGroup>
                 <Label htmlFor='country'>Select Country</Label>
                 <Dropdown>
-                  <Dropdown.Select placeholder='Select your country' />
+                  <Dropdown.Select
+                    placeholder={
+                      handleSetDropDown('country') || 'Select your country'
+                    }
+                  />
                   <Dropdown.List>
                     <Dropdown.Search
                       placeholder='Search country...'
@@ -217,7 +262,10 @@ const CreateCam = () => {
               </FormGroup>
             </FormRow>
 
-            <Button className='bg-primary text-white mx-auto mt-5'>
+            <Button
+              isLoading={isSubmitting}
+              className='mx-auto mt-5 text-white bg-primary'
+            >
               Submit new Campain
             </Button>
           </form>
