@@ -14,6 +14,9 @@ import FormError from 'src/components/Errors';
 import { EyeSlashIcon, EyeIcon } from '@heroicons/react/24/outline';
 import ActionBtn from 'src/components/Button/ActionBtn';
 import { titlePage } from 'src/utils/contants';
+import { useDispatch } from 'react-redux';
+import { authRegister } from 'src/store/auth/authSlice';
+import { toast } from 'react-toastify';
 
 const schema = yup.object({
   username: yup.string().required(message.require),
@@ -24,18 +27,25 @@ const schema = yup.object({
 const Register = () => {
   const [accept, setAccept] = useState(false);
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const handleCheck = (state, callback) => {
     callback(!state);
   };
 
-  const { handleSubmit, control, formState } = useForm({
+  const { handleSubmit, control, formState, reset } = useForm({
     resolver: yupResolver(schema),
   });
 
   const { isSubmitting, errors } = formState;
-  const handleRegister = (value) => {
-    console.log(value);
+  const handleRegister = async (values) => {
+    try {
+      dispatch(authRegister(values));
+      toast.success('Create user successfully!!');
+      reset({});
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   useEffect(() => {

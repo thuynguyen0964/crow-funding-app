@@ -13,6 +13,8 @@ import Label from 'src/components/label';
 import Input from 'src/components/Input';
 import Button from 'src/components/Button';
 import { titlePage } from 'src/utils/contants';
+import { useDispatch } from 'react-redux';
+import { authLogin } from 'src/store/auth/authSlice';
 
 const schema = yup.object({
   email: yup.string().required(message.require).email(message.email),
@@ -21,6 +23,8 @@ const schema = yup.object({
 
 const Login = () => {
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     document.title = titlePage.LOGIN;
   }, []);
@@ -34,9 +38,10 @@ const Login = () => {
   };
 
   const { isSubmitting, errors } = formState;
-  const handleLogin = (value) => {
-    console.log(value);
+  const handleLogin = (values) => {
+    dispatch(authLogin(values));
   };
+
   return (
     <Authen heading={'Wellcome back, User'}>
       <p className='mb-6 text-xs font-normal text-center lg:text-sm text-text3 lg:mb-8'>

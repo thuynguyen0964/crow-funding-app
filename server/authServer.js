@@ -67,7 +67,7 @@ app.post('/auth/login', (req, res) => {
     }
     const tokens = generateTokens(user);
 
-    updateRefreshToken(user.name, tokens.refreshToken);
+    updateRefreshToken(user.username, tokens.refreshToken);
     res.json(tokens);
   });
 });
@@ -91,7 +91,7 @@ app.post('/token', (req, res) => {
 });
 
 app.post('/auth/register', (req, res) => {
-  const { name, password, email, permissions } = req.body;
+  const { username, password, email, permissions } = req.body;
   const user = users.find((user) => {
     return user.email === email;
   });
@@ -104,7 +104,7 @@ app.post('/auth/register', (req, res) => {
     }
     users.push({
       id: users.length + 1,
-      name,
+      username,
       password: hash,
       email,
       refreshToken: null,
