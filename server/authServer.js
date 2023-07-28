@@ -28,10 +28,9 @@ const generateTokens = (payload) => {
 
   return { accessToken, refreshToken };
 };
-function updateRefreshToken(name, refreshToken) {
-  console.log('updateRefreshToken ~ name', name);
+function updateRefreshToken(username, refreshToken) {
   users = users.map((user) => {
-    if (user.name === name) {
+    if (user.username === username) {
       return {
         ...user,
         refreshToken,

@@ -19,6 +19,8 @@ import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import { api } from 'src/api';
 import UploadImage from 'src/components/upload';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const categoriesFake = ['Educations', 'Life', 'Extracurricular', 'Scouting'];
 
@@ -27,6 +29,10 @@ const CreateCam = () => {
   const [contries, setContries] = useState([]);
   const [startTime, onChangeStartTime] = useState(new Date());
   const [endTime, onChangeEndTime] = useState(new Date());
+  const { user } = useSelector((state) => state.auth);
+
+  console.log('🚀 ~ CreateCam ~ user:', user);
+  const navigate = useNavigate();
 
   const handleReset = () => {
     onChangeEndTime('');
@@ -58,6 +64,12 @@ const CreateCam = () => {
   useEffect(() => {
     document.title = titlePage.ADDCAMPAIN;
   }, []);
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, [navigate, user]);
 
   const handleGetCategory = (name, value) => {
     setValue(name, value);

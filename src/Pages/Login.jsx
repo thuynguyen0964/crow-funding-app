@@ -15,6 +15,7 @@ import Button from 'src/components/Button';
 import { titlePage } from 'src/utils/contants';
 import { useDispatch } from 'react-redux';
 import { authLogin } from 'src/store/auth/authSlice';
+import { toast } from 'react-toastify';
 
 const schema = yup.object({
   email: yup.string().required(message.require).email(message.email),
@@ -38,8 +39,13 @@ const Login = () => {
   };
 
   const { isSubmitting, errors } = formState;
-  const handleLogin = (values) => {
-    dispatch(authLogin(values));
+  const handleLogin = async (values) => {
+    try {
+      dispatch(authLogin(values));
+      toast.success('Login successfully!!');
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
