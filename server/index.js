@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 require('dotenv').config();
 const jsonServer = require('json-server');
 const express = require('express');
