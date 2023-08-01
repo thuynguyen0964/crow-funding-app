@@ -52,8 +52,6 @@ function* handleRefreshTokenWhenReload({ payload }) {
     if (res.data) {
       saveTokens(res.data.accessToken, res.data.refreshToken);
       yield call(handleAuthGetUser, { payload: res.data.accessToken });
-    } else {
-      yield handleAuthLogout();
     }
   } catch (error) {
     console.log(error.message);

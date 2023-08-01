@@ -1,6 +1,6 @@
 import { apiAuth } from 'src/api';
 import { authUpdate } from 'src/store/auth/authSlice';
-import { getTokens } from 'src/utils/auth';
+import { getTokens, saveTokens } from 'src/utils/auth';
 
 export const useRefreshToken = () => {
   async function refresh() {
@@ -9,7 +9,7 @@ export const useRefreshToken = () => {
     const response = await apiAuth.post('/token', {
       refreshToken: refesh_token,
     });
-
+    saveTokens(response.data.accessToken, response.data.refreshToken);
     authUpdate((prev) => ({
       ...prev,
       accessToken: response.data.accessToken,
