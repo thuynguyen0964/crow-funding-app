@@ -5,7 +5,7 @@ import {
   getCurrentUser,
   requestWhenReload,
 } from './authRequest';
-import { saveTokens } from 'src/utils/auth';
+import { logOut, saveTokens } from 'src/utils/auth';
 import { authUpdate } from './authSlice';
 
 function* handleAuthRegsiter(actions) {
@@ -51,10 +51,22 @@ function* handleRefreshTokenWhenReload({ payload }) {
     if (res.data) {
       saveTokens(res.data.accessToken, res.data.refreshToken);
       yield call(handleAuthGetUser, { payload: res.data.accessToken });
+    } else {
+      yield handleAuthLogout();
     }
   } catch (error) {
     console.log(error.message);
   }
+}
+
+function* handleAuthLogout() {
+  yield put(
+    authUpdate({
+      user: undefined,
+      accessToken: null,
+    })
+  );
+  logOut();
 }
 
 export {
@@ -62,4 +74,5 @@ export {
   handleAuthLogin,
   handleAuthGetUser,
   handleRefreshTokenWhenReload,
+  handleAuthLogout,
 };

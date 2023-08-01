@@ -13,7 +13,7 @@ import Label from 'src/components/label';
 import Input from 'src/components/Input';
 import Button from 'src/components/Button';
 import { titlePage } from 'src/utils/contants';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authLogin } from 'src/store/auth/authSlice';
 import { toast } from 'react-toastify';
 
@@ -26,6 +26,13 @@ const Login = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user]);
 
   useEffect(() => {
     document.title = titlePage.LOGIN;
