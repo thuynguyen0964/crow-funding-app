@@ -40,7 +40,7 @@ const Register = () => {
   const { isSubmitting, errors } = formState;
   const handleRegister = async (values) => {
     try {
-      dispatch(authRegister(values));
+      dispatch(authRegister({ ...values, permissions: [] }));
       toast.success('Create user successfully!!');
       reset({});
     } catch (error) {
