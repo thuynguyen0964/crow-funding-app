@@ -8,8 +8,6 @@ import { getTokens, logOut } from './utils/auth';
 function App() {
   const user = useSelector((state) => state.auth.user);
 
-  console.log('🚀 ~ App ~ user:', user);
-
   const dispatch = useDispatch();
 
   useEffect(() => {

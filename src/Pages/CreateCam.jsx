@@ -19,8 +19,7 @@ import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import { api } from 'src/api';
 import UploadImage from 'src/components/upload';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import RequiredAuth from './RequiredAuth';
 
 const categoriesFake = ['Educations', 'Life', 'Extracurricular', 'Scouting'];
 
@@ -29,10 +28,6 @@ const CreateCam = () => {
   const [contries, setContries] = useState([]);
   const [startTime, onChangeStartTime] = useState(new Date());
   const [endTime, onChangeEndTime] = useState(new Date());
-  const { user } = useSelector((state) => state.auth);
-
-  console.log('🚀 ~ CreateCam ~ user:', user);
-  const navigate = useNavigate();
 
   const handleReset = () => {
     onChangeEndTime('');
@@ -65,12 +60,6 @@ const CreateCam = () => {
     document.title = titlePage.ADDCAMPAIN;
   }, []);
 
-  useEffect(() => {
-    if (!user) {
-      navigate('/login');
-    }
-  }, [navigate, user]);
-
   const handleGetCategory = (name, value) => {
     setValue(name, value);
   };
@@ -96,7 +85,7 @@ const CreateCam = () => {
   }, [deboucedVal]);
 
   return (
-    <Fragment>
+    <RequiredAuth>
       <section className='bg-white rounded-lg py-10 px-[66px]'>
         <div className='text-center'>
           <h1 className='inline-block py-4 mb-6 text-2xl font-bold rounded-lg px-14 bg-text4 bg-opacity-10'>
@@ -283,7 +272,7 @@ const CreateCam = () => {
           </form>
         </div>
       </section>
-    </Fragment>
+    </RequiredAuth>
   );
 };
 

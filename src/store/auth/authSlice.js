@@ -7,9 +7,7 @@ const authSlice = createSlice({
     accessToken: null,
   },
   reducers: {
-    authLogin: (state, actions) => {
-      state, actions.payload;
-    },
+    authLogin: (state) => ({ state }),
     authRegister: (state, actions) => {
       state, actions.payload;
     },
@@ -20,8 +18,8 @@ const authSlice = createSlice({
     authFetchUser: (state, actions) => {
       state, actions.payload;
     },
-    authRefreshWhenReload: (state, actions) => {},
-    authLogout: (state, actions) => ({}),
+    authRefreshWhenReload: () => {},
+    authLogout: () => ({}),
   },
 });
 

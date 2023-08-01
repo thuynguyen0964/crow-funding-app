@@ -7,6 +7,7 @@ import {
 } from './authRequest';
 import { logOut, saveTokens } from 'src/utils/auth';
 import { authUpdate } from './authSlice';
+import { toast } from 'react-toastify';
 
 function* handleAuthRegsiter(actions) {
   try {
@@ -67,6 +68,7 @@ function* handleAuthLogout() {
     })
   );
   logOut();
+  toast.success('Logout successfully!!');
 }
 
 export {

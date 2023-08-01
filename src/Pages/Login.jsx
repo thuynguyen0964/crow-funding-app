@@ -32,7 +32,7 @@ const Login = () => {
     if (user) {
       navigate('/');
     }
-  }, [user]);
+  }, [navigate, user]);
 
   useEffect(() => {
     document.title = titlePage.LOGIN;
