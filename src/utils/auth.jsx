@@ -36,4 +36,20 @@ const getTokens = () => {
   return { access_token, refesh_token };
 };
 
-export { saveTokens, getTokens };
+const logOut = () => {
+  const access_token = Cookies.get(accessTokenKey);
+  if (access_token) {
+    Cookies.remove(accessTokenKey, {
+      ...infoCookies,
+      path: '/',
+      domain: import.meta.env.VITE_COOKIE_DOMAIN,
+    });
+    Cookies.remove(refeshTokenKey, {
+      ...infoCookies,
+      path: '/',
+      domain: import.meta.env.VITE_COOKIE_DOMAIN,
+    });
+  }
+};
+
+export { saveTokens, getTokens, logOut };

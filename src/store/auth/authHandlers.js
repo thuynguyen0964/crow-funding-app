@@ -3,6 +3,7 @@ import {
   requestAuthRegister,
   requestAuthLogin,
   getCurrentUser,
+  requestWhenReload,
 } from './authRequest';
 import { saveTokens } from 'src/utils/auth';
 import { authUpdate } from './authSlice';
@@ -40,8 +41,25 @@ function* handleAuthGetUser({ payload }) {
       );
     }
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 }
 
-export { handleAuthRegsiter, handleAuthLogin, handleAuthGetUser };
+function* handleRefreshTokenWhenReload({ payload }) {
+  try {
+    const res = yield call(requestWhenReload, payload);
+    if (res.data) {
+      saveTokens(res.data.accessToken, res.data.refreshToken);
+      yield call(handleAuthGetUser, { payload: res.data.accessToken });
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+export {
+  handleAuthRegsiter,
+  handleAuthLogin,
+  handleAuthGetUser,
+  handleRefreshTokenWhenReload,
+};

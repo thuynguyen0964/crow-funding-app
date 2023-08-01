@@ -12,7 +12,6 @@ let users = database.users;
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 app.use(cors());
-
 const generateTokens = (payload) => {
   const { id, name } = payload;
   const accessToken = jwt.sign({ id, name }, process.env.ACCESS_TOKEN_SECRET, {
@@ -28,9 +27,10 @@ const generateTokens = (payload) => {
 
   return { accessToken, refreshToken };
 };
-function updateRefreshToken(username, refreshToken) {
+function updateRefreshToken(name, refreshToken) {
+  console.log('updateRefreshToken ~ name', name);
   users = users.map((user) => {
-    if (user.username === username) {
+    if (user.username === name) {
       return {
         ...user,
         refreshToken,
@@ -47,7 +47,6 @@ app.get('/me', verifyToken, (req, res) => {
   if (!user) return res.sendStatus(401);
   res.json(user);
 });
-
 app.post('/auth/login', (req, res) => {
   const email = req.body.email;
   const user = users.find((user) => {
@@ -81,7 +80,7 @@ app.post('/token', (req, res) => {
   try {
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
     const tokens = generateTokens(user);
-    updateRefreshToken(user.name, tokens.refreshToken);
+    updateRefreshToken(user.username, tokens.refreshToken);
     res.json(tokens);
   } catch (err) {
     console.log(err);
@@ -90,7 +89,7 @@ app.post('/token', (req, res) => {
 });
 
 app.post('/auth/register', (req, res) => {
-  const { username, password, email, permissions } = req.body;
+  const { name, password, email, permissions } = req.body;
   const user = users.find((user) => {
     return user.email === email;
   });
@@ -103,7 +102,7 @@ app.post('/auth/register', (req, res) => {
     }
     users.push({
       id: users.length + 1,
-      username,
+      name,
       password: hash,
       email,
       refreshToken: null,
@@ -116,7 +115,7 @@ app.post('/auth/register', (req, res) => {
 
 app.delete('/logout', verifyToken, (req, res) => {
   const user = users.find((user) => user.id === req.userId);
-  updateRefreshToken(user.name, '');
+  updateRefreshToken(user.username, '');
   res.sendStatus(204);
 });
 

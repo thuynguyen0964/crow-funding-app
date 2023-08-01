@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Authen from 'src/Layout/Authen';
 import ActionBtn from 'src/components/Button/ActionBtn';
 import { message } from 'src/constants';
@@ -24,6 +24,7 @@ const schema = yup.object({
 
 const Login = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,6 +44,7 @@ const Login = () => {
     try {
       dispatch(authLogin(values));
       toast.success('Login successfully!!');
+      navigate('/');
     } catch (error) {
       console.log(error.message);
     }

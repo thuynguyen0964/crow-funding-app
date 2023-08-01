@@ -7,8 +7,7 @@ const api = axios.create({
 });
 
 const apiAuth = axios.create({
-  baseURL: 'http://localhost:5001/',
-  timeout: 10000,
+  baseURL: 'http://localhost:5001',
 });
 
 export { apiAuth, api };
